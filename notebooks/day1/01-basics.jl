@@ -49,7 +49,7 @@ md"""
 Let's get started with the basics. Some mathematical operations, """
 
 # ╔═╡ 7bf5bdbe-4ab7-11eb-0d4b-c116e02cb9d9
-1 + 2       # adding integers
+1 + 50       # adding integers
 
 # ╔═╡ 83306610-4ab7-11eb-3eb5-55a465e0abb9
 1.0 + 2.0   # adding floats
@@ -226,24 +226,14 @@ The operator `∈` (\in [TAB]) is a boolean operator that takes a character and 
 # ╔═╡ 5a9bbbe6-4aba-11eb-3652-43eb7891f437
 
 
-# ╔═╡ 6bdc8a5e-4aba-11eb-263c-df3af7afa517
-QuestionBlock(;
-	title=md"**Question 1: logical statements**",
-	description = md"""
-	
-	Check the behaviour of the relational operators on strings.
-	
-	```julia
-	"apples" == "pears"
-	"apples" < "pears"
-	"apples" < "Pears"
-	```
-	""",
-	questions = [Question(;description=md"", validators = Bool[], status=md"")]
-)
-
 # ╔═╡ 77c5280c-58d0-11eb-19ad-83ec82b6d7c7
+"apples" == "pears"
 
+# ╔═╡ 5bf291b0-66cb-11eb-0e2d-a3fb8e16b012
+"apples" < "pears"
+
+# ╔═╡ 6e749360-66cb-11eb-2b05-2bec2eda858c
+"apples" < "Pears"
 
 # ╔═╡ a69ead46-4abc-11eb-3d1d-eb1c73f65150
 md"All binary arithmetic and bitwise operators have an updating version that assigns the result of the operation back into the left operand. The updating version of the binary operator is formed by placing a, `=`, immediately after the operator."
@@ -362,9 +352,9 @@ end
 
 # ╔═╡ 1c5975ec-4abe-11eb-0ff0-bfb2f03a520b
 statements = [ 
-	missing,  # first statement
-	missing,  # second statement
-	missing   # third statement
+	true,  # first statement
+	true,  # second statement
+	true   # third statement
 ]
 
 # ╔═╡ bd446c42-4abd-11eb-0465-d9a61c48ff48
@@ -413,7 +403,7 @@ y = `condition` ? `valueiftrue` : `valueiffalse`
 """
 
 # ╔═╡ 0c693c24-4ac0-11eb-2329-c743dcc5039d
-clip(x) = missing
+clip(x) = ((x<1) ? x : 1 ) > 0 ? ((x<1) ? x : 1 ) : 0
 
 # ╔═╡ 8933033a-4abf-11eb-1156-a53a5ee9152c
 begin
@@ -1194,8 +1184,9 @@ end
 # ╟─39a0a328-4ab9-11eb-0f37-6717095b56aa
 # ╠═4749f268-4ab9-11eb-15a7-579437e0bd20
 # ╟─5a9bbbe6-4aba-11eb-3652-43eb7891f437
-# ╟─6bdc8a5e-4aba-11eb-263c-df3af7afa517
 # ╠═77c5280c-58d0-11eb-19ad-83ec82b6d7c7
+# ╠═5bf291b0-66cb-11eb-0e2d-a3fb8e16b012
+# ╠═6e749360-66cb-11eb-2b05-2bec2eda858c
 # ╟─a69ead46-4abc-11eb-3d1d-eb1c73f65150
 # ╠═b482b998-4abc-11eb-36da-379010485bfa
 # ╟─07b103ae-4abd-11eb-311b-278d1e033642
@@ -1236,7 +1227,7 @@ end
 # ╟─6736dafe-4abf-11eb-1fce-0716d2b7f4a8
 # ╟─8933033a-4abf-11eb-1156-a53a5ee9152c
 # ╠═0c693c24-4ac0-11eb-2329-c743dcc5039d
-# ╟─035a53ba-4ac1-11eb-3c34-b50a803b7b7d
+# ╠═035a53ba-4ac1-11eb-3c34-b50a803b7b7d
 # ╟─2a5fca7c-4ac0-11eb-33a3-23d972ca27b8
 # ╠═3896642a-4ac0-11eb-2c7c-4f376ab82217
 # ╠═3ef3faf8-4ac0-11eb-1965-fd23413e29f3

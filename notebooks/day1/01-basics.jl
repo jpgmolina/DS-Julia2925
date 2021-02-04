@@ -10,7 +10,7 @@ using Plots
 # ╔═╡ e97e5984-4ab9-11eb-3efb-9f54c6c307dd
 # edit the code below to set your name and UGent username
 
-student = (name = "Jenke Janssen", email = "Jenke.Janssen@UGent.be");
+student = (name = "Juan Pablo Gallo", email = "JuanPablo.GalloMolina@UGent.be");
 
 # press the ▶ button in the bottom right of this cell to run your edits
 # or use Shift+Enter
@@ -88,7 +88,7 @@ div(2, 4)   # Computes 2/4 truncated to an integer
 :symbol    # symbols, mostly used for macros
 
 # ╔═╡ 8bab2e50-5a6c-11eb-3c5f-a9f811483814
-:ζ         # any LaTeX symbol
+:ζ   :α      # any LaTeX symbol
 
 # ╔═╡ 9d2708ca-5a6c-11eb-1c0f-473f0e2b5363
 :🎉        # or Unicode emoji
@@ -403,7 +403,7 @@ y = `condition` ? `valueiftrue` : `valueiffalse`
 """
 
 # ╔═╡ 0c693c24-4ac0-11eb-2329-c743dcc5039d
-clip(x) = ((x<1) ? x : 1 ) > 0 ? ((x<1) ? x : 1 ) : 0
+clip(x) = ((x<1) ? x : 1 ) > 0 ? (x<1) ? x : 1 : 0
 
 # ╔═╡ 8933033a-4abf-11eb-1156-a53a5ee9152c
 begin
@@ -426,6 +426,15 @@ begin
 	
 	validate(qb2, tracker)
 end
+
+# ╔═╡ 5b15c96e-66cf-11eb-24d8-a532b0151c45
+clip(-0.1)
+
+# ╔═╡ 732414e2-66cf-11eb-137e-6b28f191dc12
+clip(1.2)
+
+# ╔═╡ 68f210d0-66cf-11eb-0aa8-69b7207a6b57
+clip(0.5)
 
 # ╔═╡ 035a53ba-4ac1-11eb-3c34-b50a803b7b7d
 if !ismissing(clip(3))
@@ -614,7 +623,8 @@ begin
 end
 
 # ╔═╡ beafce06-4ac1-11eb-2431-1ffeba45716b
-sort
+
+
 
 # ╔═╡ ec487488-4ac1-11eb-1be3-a93e41f78bf3
 md"""
@@ -796,7 +806,7 @@ contour(-5:0.1:5, -10:0.1:10, (x, y) -> 3x^2-4y^2 + x*y/6)
 md"""### 8. Exercises"""
 
 # ╔═╡ a3969292-57ff-11eb-059b-e9e931a30dc1
-stirling(n) = missing
+stirling(n) = sqrt(2*pi*n)*(n/exp(1))^n
 
 # ╔═╡ a48be23a-57ff-11eb-1bc3-3d3e046ea67c
 begin 	
@@ -836,7 +846,22 @@ begin
 	validate(qb4, tracker)
 end
 
+# ╔═╡ d3e40c90-66d4-11eb-0fbb-8b98510139c8
+factorial(10)
+
+# ╔═╡ 98729c80-66d4-11eb-33fe-95284c134ae6
+begin
+scatter([1:10],x -> factorial(x),yaxis=:log)
+scatter!([1:10], x -> stirling(x),yaxis=:log)
+end
+
+# ╔═╡ 0f98ee40-66d5-11eb-1a0b-05646d20f0e0
+
+
 # ╔═╡ adb47b64-5af8-11eb-1b32-57cbe5d47200
+
+
+# ╔═╡ da623af0-66d5-11eb-16a1-5141968a747c
 
 
 # ╔═╡ 0cd2d0e4-59e1-11eb-112e-83ebe626f597
@@ -844,7 +869,7 @@ present = time()
 
 # ╔═╡ 0c306fd8-4ad5-11eb-1a9f-2d3d1e838a77
 function since_epoch(t)
-	days, hours, minutes, seconds = missing, missing, missing, missing
+	days, hours, minutes, seconds = div(t,(3600*24)), div(t%=(24 * 3600),3600),div(t%=3600,60), t%60
 	return days, hours, minutes, seconds
 end
 
@@ -864,6 +889,9 @@ end
 
 # ╔═╡ 40557d76-661e-11eb-3df0-659c6095285d
 since_epoch(present)
+
+# ╔═╡ f2edc550-66d8-11eb-2865-adfc8c79a4b1
+
 
 # ╔═╡ b1af96ea-5af8-11eb-0d08-f59a4c2b686c
 
@@ -907,15 +935,45 @@ for any value of $n$ greater than 2.""",
 	)
 end
 
+# ╔═╡ dc38dd70-66da-11eb-2b09-0d0ad311b8da
+
+
 # ╔═╡ bf53d86c-59e1-11eb-1456-5518e1f63390
 function checkfermat(a::Int, b::Int, c::Int, n::Int)
-	answer = missing
+	
+	if n < 2 && (a^n+b^n)==c^n
+		answer="Holy smokes, Fermat was wrong!";
+	else
+		answer="No, that doesn’t work.";
+	end
 	println(answer)
 	return answer
 end
 
-# ╔═╡ b4118bfa-5af8-11eb-0aca-cddef8e191ee
+# ╔═╡ dd98e2a0-66da-11eb-2158-6fb739ea96f4
+# don´t know how to run this on pluto...
+function checkfermat()
+	print("Type a")
+	a=parse(Int,readline())
+	print("Type b")
+	b=parse(Int,readline())
+	c=print("Type c")
+	c=parse(Int,readline())
+	print("Type n")
+	n=parse(Int,readline())
+	
+	if n < 2 && (a^n+b^n)==c^n
+		answer="Holy smokes, Fermat was wrong!";
+	else
+		answer="No, that doesn’t work.";
+	end
+	println(answer)
+	return answer
+	
+end
 
+# ╔═╡ b4118bfa-5af8-11eb-0aca-cddef8e191ee
+checkfermat(1,2,3,4)
 
 # ╔═╡ f077c390-57fe-11eb-1ad9-31110b3dac39
 md"""### 9. Extra exercises"""
@@ -1227,7 +1285,10 @@ end
 # ╟─6736dafe-4abf-11eb-1fce-0716d2b7f4a8
 # ╟─8933033a-4abf-11eb-1156-a53a5ee9152c
 # ╠═0c693c24-4ac0-11eb-2329-c743dcc5039d
-# ╠═035a53ba-4ac1-11eb-3c34-b50a803b7b7d
+# ╠═5b15c96e-66cf-11eb-24d8-a532b0151c45
+# ╠═732414e2-66cf-11eb-137e-6b28f191dc12
+# ╠═68f210d0-66cf-11eb-0aa8-69b7207a6b57
+# ╟─035a53ba-4ac1-11eb-3c34-b50a803b7b7d
 # ╟─2a5fca7c-4ac0-11eb-33a3-23d972ca27b8
 # ╠═3896642a-4ac0-11eb-2c7c-4f376ab82217
 # ╠═3ef3faf8-4ac0-11eb-1965-fd23413e29f3
@@ -1268,7 +1329,7 @@ end
 # ╠═a6b95d62-4ac1-11eb-0c93-7fa0f6a120d5
 # ╠═ab006064-4ac1-11eb-32be-6557b8d45f32
 # ╟─b0603566-4ac1-11eb-17bc-3b63cd2aa1e9
-# ╠═b6db7e2a-5a6e-11eb-1a55-e74b15cbb9e2
+# ╟─b6db7e2a-5a6e-11eb-1a55-e74b15cbb9e2
 # ╠═beafce06-4ac1-11eb-2431-1ffeba45716b
 # ╟─ec487488-4ac1-11eb-1be3-a93e41f78bf3
 # ╠═f88fee6c-4ac1-11eb-1671-43493122f061
@@ -1316,14 +1377,21 @@ end
 # ╟─0e63d722-4ac3-11eb-3740-d31b47a77912
 # ╟─a48be23a-57ff-11eb-1bc3-3d3e046ea67c
 # ╠═a3969292-57ff-11eb-059b-e9e931a30dc1
+# ╠═d3e40c90-66d4-11eb-0fbb-8b98510139c8
+# ╠═98729c80-66d4-11eb-33fe-95284c134ae6
+# ╠═0f98ee40-66d5-11eb-1a0b-05646d20f0e0
 # ╟─adb47b64-5af8-11eb-1b32-57cbe5d47200
 # ╟─c34ede1c-4ad4-11eb-050f-bb07c5d19c1c
+# ╠═da623af0-66d5-11eb-16a1-5141968a747c
 # ╠═0cd2d0e4-59e1-11eb-112e-83ebe626f597
 # ╠═0c306fd8-4ad5-11eb-1a9f-2d3d1e838a77
 # ╠═40557d76-661e-11eb-3df0-659c6095285d
+# ╠═f2edc550-66d8-11eb-2865-adfc8c79a4b1
 # ╟─b1af96ea-5af8-11eb-0d08-f59a4c2b686c
 # ╟─e99d6b96-4ad5-11eb-2144-f97a97e71ae4
+# ╠═dc38dd70-66da-11eb-2b09-0d0ad311b8da
 # ╠═bf53d86c-59e1-11eb-1456-5518e1f63390
+# ╠═dd98e2a0-66da-11eb-2158-6fb739ea96f4
 # ╠═b4118bfa-5af8-11eb-0aca-cddef8e191ee
 # ╟─f077c390-57fe-11eb-1ad9-31110b3dac39
 # ╟─42f24f58-4ac3-11eb-06b5-ebc015c17520

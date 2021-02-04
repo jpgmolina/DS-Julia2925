@@ -13,6 +13,16 @@ macro bind(def, element)
     end
 end
 
+# ╔═╡ cdff6730-e785-11ea-2546-4969521b33a7
+begin 
+	using DSJulia;
+	tracker = ProgressTracker(student.name, student.email);
+	md"""
+
+	Submission by: **_$(student.name)_**
+	"""
+end
+
 # ╔═╡ fbde6364-4f30-11eb-1ece-712293996c04
 using Colors: RGB
 
@@ -107,23 +117,13 @@ end;
 # ╔═╡ 7308bc54-e6cd-11ea-0eab-83f7535edf25
 # edit the code below to set your name and UGent username
 
-student = (name = "Jimmy Janssen", email = "Jimmy.Janssen@UGent.be");
+student = (name = "Juan Pablo Gallo, email = "JuanPablo.GalloMolina@UGent.be");
 
 # press the ▶ button in the bottom right of this cell to run your edits
 # or use Shift+Enter
 
 # you might need to wait until all other cells in this notebook have completed running. 
 # scroll down the page to see what's up
-
-# ╔═╡ cdff6730-e785-11ea-2546-4969521b33a7
-begin 
-	using DSJulia;
-	tracker = ProgressTracker(student.name, student.email);
-	md"""
-
-	Submission by: **_$(student.name)_**
-	"""
-end
 
 # ╔═╡ a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
 md"""
@@ -282,25 +282,25 @@ qb_ai = QuestionBlock(;
 end
 
 # ╔═╡ 4b3317da-4c1f-11eb-19d5-03570c4d65df
-
+C=[]
 
 # ╔═╡ 503c9da0-4c1f-11eb-292a-db7b8ce9f458
-
+zeros(5)
 
 # ╔═╡ 503d455c-4c1f-11eb-3af2-8f200db1fd30
-
+ones(3,3)
 
 # ╔═╡ 504d8aca-4c1f-11eb-3600-d77038b0f2bc
-
+fill(0.5,10)
 
 # ╔═╡ 505874a8-4c1f-11eb-1132-3bbba81ae1db
-
+rand(2)
 
 # ╔═╡ 5071c430-4c1f-11eb-226b-634abae6082f
-
+randn(2)
 
 # ╔═╡ c2ccb916-5a72-11eb-16d9-15283727d6cf
-
+rand(Bool, 10) 
 
 # ╔═╡ 52a8a6ec-4c1f-11eb-386c-a99ef05b41b0
 md"Often it is better to provide a specific type for initialization. For numeric elements `Float64` is the default."
@@ -510,6 +510,9 @@ RGB(0.5,0.2,0.1)
 # ╔═╡ 0977a54e-4f31-11eb-148c-1d44be4f6853
 fyi(md"*Colors.jl* provides a wide array of functions for dealing with color. This includes conversion between colorspaces, measuring distance between colors, simulating color blindness, parsing colors, and generating color scales for graphics.")
 
+# ╔═╡ d738cd20-66e5-11eb-0cfe-0762d884e9b1
+
+
 # ╔═╡ 4c21ed0e-4f37-11eb-0a90-3120e1ee7936
 url = "https://i.imgur.com/BJWoNPg.jpg"
 
@@ -647,6 +650,9 @@ fyi(md"A tuple is an array with a fixed size. It is not possible to perform oper
 # ╔═╡ 6d496b44-4c58-11eb-33b6-5b4d6315b6ea
 pop!(tupleware)
 
+# ╔═╡ aa378a90-66e6-11eb-2dc9-edd7da2ff177
+
+
 # ╔═╡ 56e8f6b4-5a75-11eb-3eeb-ffec491be69c
 fyi(md"In contrast to arrays however, the types at positions should not be the same, since the compiler will create a new type for every combination!")
 
@@ -698,6 +704,30 @@ delete!(scores, "humans")  # removing a key, earth was destroyed
 # ╔═╡ ebb09172-4c58-11eb-1cc9-91193c57677d
 md"## 4. Exercises"
 
+# ╔═╡ 3aa37510-58bb-11eb-2ecb-37ce4428269c
+
+
+# ╔═╡ 7e45edce-66e8-11eb-3920-0b4ee2660b7b
+qb1 = QuestionBlock(;
+	title=md"**Question 1: do you still remember how to integrate?**",
+	description = md"""
+Integrating for dummies. Compute the Riemann sum **without** making use of a for-loop.
+
+Riemann approximates the integration of a function in the interval [a, b],
+		
+$$\int_a^b f(x)\, dx \approx \sum_{i=1}^n f(x_i) \,\Delta x$$
+
+which is the sum of the function $f(x)$ evaluated over an array of x-values in the interval [a,b] multiplied by the $\Delta x$ which is,
+		
+$$\Delta x = \cfrac{(b-a)}{n}$$
+
+Complete the function `riemannsum(f, a, b,; n=100)` where the arguments are the function to integrate (f) the boundaries of the interval a, b and the number of bins with a default value of 100, n.
+
+	""",
+
+# ╔═╡ 689fefd0-66e8-11eb-32d4-230f1f4ea980
+
+
 # ╔═╡ ee9069e2-63a7-11eb-12b9-97ae270506f4
 hint(md"Remember, `.` is not only used for decimals...")
 
@@ -712,7 +742,7 @@ begin
 	integral2 = missing #...
 end;
 
-# ╔═╡ 3aa37510-58bb-11eb-2ecb-37ce4428269c
+# ╔═╡ 627babd0-66e8-11eb-27c2-4f5a935e899a
 begin 
 	
 	q1 = Question(
@@ -1111,6 +1141,7 @@ md""" ## 5. References
 # ╠═42254aa6-4f37-11eb-001b-f78d5383e36f
 # ╟─0977a54e-4f31-11eb-148c-1d44be4f6853
 # ╠═486457d8-4f37-11eb-306c-57d650508136
+# ╠═d738cd20-66e5-11eb-0cfe-0762d884e9b1
 # ╠═4c21ed0e-4f37-11eb-0a90-3120e1ee7936
 # ╠═5686c59e-4f37-11eb-21d5-47bdbcf75805
 # ╠═a5dc2904-4f37-11eb-24c1-d7837c8bd487
@@ -1154,6 +1185,7 @@ md""" ## 5. References
 # ╠═23dac6cc-4c58-11eb-2c66-f1f79db08536
 # ╟─4f80f0a8-4c58-11eb-3679-c186c61c5a14
 # ╠═6d496b44-4c58-11eb-33b6-5b4d6315b6ea
+# ╠═aa378a90-66e6-11eb-2dc9-edd7da2ff177
 # ╟─56e8f6b4-5a75-11eb-3eeb-ffec491be69c
 # ╠═8245e46e-5a75-11eb-2d0a-27ef6a1f2492
 # ╠═942b88b4-5a75-11eb-3e7b-4534bf4a7b12
@@ -1171,7 +1203,10 @@ md""" ## 5. References
 # ╠═1882840a-5a76-11eb-3392-81c2915487f5
 # ╠═3fc787d6-5a76-11eb-06e9-5378d27ce011
 # ╟─ebb09172-4c58-11eb-1cc9-91193c57677d
-# ╟─3aa37510-58bb-11eb-2ecb-37ce4428269c
+# ╠═3aa37510-58bb-11eb-2ecb-37ce4428269c
+# ╠═627babd0-66e8-11eb-27c2-4f5a935e899a
+# ╠═7e45edce-66e8-11eb-3920-0b4ee2660b7b
+# ╠═689fefd0-66e8-11eb-32d4-230f1f4ea980
 # ╟─ee9069e2-63a7-11eb-12b9-97ae270506f4
 # ╠═3de1f1aa-58bd-11eb-2ffc-0de292b13840
 # ╠═5f47cdf0-58be-11eb-1bca-a3d0941b9bea

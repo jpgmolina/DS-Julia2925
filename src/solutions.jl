@@ -17,6 +17,7 @@ bram.de.jaegher@gmail.com
 function clip(x)
   if x ≤ 0 && return 0.
   elseif x ≥ 1 && return 1.
+  else
   return x
   end
 end
@@ -371,7 +372,7 @@ galleons(money::WizCur) = money.galleons
 sickles(money::WizCur) = money.sickles
 knuts(money::WizCur) = money.knuts
 
-moneyinknuts(money::WizCur) = 29*17galleons(money) + 17sickles(money) + knuts(money)
+moneyinknuts(money::WizCur) = 29*17galleons(money) + 29sickles(money) + knuts(money)
 
 function Base.show(io::IO, money::WizCur)
   print(io, "$(galleons(money))G, $(sickles(money))S, $(knuts(money))K")
